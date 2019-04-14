@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Fruits\WuanFruit;
 use Illuminate\Http\Request;
 use App\Models\Points\WuanPoints;
 use App\Models\Users\{
@@ -18,7 +19,7 @@ class UsersController extends Controller
 {
 
     /**
-     * 注册接口
+     *注册接口
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -57,9 +58,12 @@ class UsersController extends Controller
                 'user_id' => $user->id,
                 'url' => env('AVATAR_URL', ' ')
             ]);
-            WuanPoints::create([
-                'user_id' => $user->id,
-                'points' => 0,
+//            WuanPoints::create([
+//                'user_id' => $user->id,
+//                'points' => 0,
+//            ]);
+            WuanFruit::create([
+                'user_id' => $user->id
             ]);
             DB::commit();
             if (!$user) {
